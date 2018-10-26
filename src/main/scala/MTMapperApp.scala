@@ -24,9 +24,6 @@ object MTMapperApp extends App with MTMapperSheet{
     private val outputDir = args(1) + File.separator
     private val configFile=args(2)
     private val year=args(4)
-    
-
-                            
 
 	  private def getDateDiff(date1:Date,date2:Date,timeUnit:TimeUnit)= {
 	      val diffInMillies = date2.getTime() - date1.getTime()
