@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="mtmapper">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../scalaIDE/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Scala Library container [ 2.10.5 ].libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}plugins/org.scala-ide.scala210.jars_4.2.0.201509281532/target/jars/scala-library.jar"/>
+        <pathelement location="${ECLIPSE_HOME}plugins/org.scala-ide.scala210.jars_4.2.0.201509281532/target/jars/scala-reflect.jar"/>
+        <pathelement location="${ECLIPSE_HOME}plugins/org.scala-ide.scala210.jars_4.2.0.201509281532/target/jars/scala-actor.jar"/>
+        <pathelement location="${ECLIPSE_HOME}plugins/org.scala-ide.scala210.jars_4.2.0.201509281532/target/jars/scala-swing.jar"/>
+    </path>
+    <path id="mtmapper.classpath">
+        <pathelement location="bin"/>
+        <path refid="Scala Library container [ 2.10.5 ].libraryclasspath"/>
+        <pathelement location="lib/spoiwolib-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
+        <pathelement location="../../../.m2/repository/ch/qos/logback/logback-classic/1.1.5/logback-classic-1.1.5.jar"/>
+        <pathelement location="../../../.m2/repository/ch/qos/logback/logback-core/1.1.5/logback-core-1.1.5.jar"/>
+        <pathelement location="../../../.m2/repository/com/typesafe/scala-logging/scala-logging-slf4j_2.10/2.1.2/scala-logging-slf4j_2.10-2.1.2.jar"/>
+        <pathelement location="../../../.m2/repository/com/typesafe/scala-logging/scala-logging-api_2.10/2.1.2/scala-logging-api_2.10-2.1.2.jar"/>
+        <pathelement location="../../../.m2/repository/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar"/>
+    </path>
+    <path id="run.MTMapper.bootclasspath">
+        <path refid="Scala Library container [ 2.10.5 ].libraryclasspath"/>
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.Runner (1).bootclasspath">
+        <path refid="Scala Library container [ 2.10.5 ].libraryclasspath"/>
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="mtmapper.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="MTMapper">
+        <java classname="main.java.Runner" failonerror="true" fork="yes">
+            <arg line="C:\Users\terry.adeagbo\Documents\workspace\mtmapper\config.xls&#13;&#10;D:\output\mapper&#13;&#10;C:\Users\terry.adeagbo\Documents\workspace\mtmapper\scope.txt&#13;&#10;D:\output\logs&#13;&#10;2015"/>
+            <classpath refid="mtmapper.classpath"/>
+            <bootclasspath>
+                <path refid="run.MTMapper.bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+    <target name="Runner (1)">
+        <java classname="main.java.Runner" failonerror="true" fork="yes">
+            <classpath refid="mtmapper.classpath"/>
+            <bootclasspath>
+                <path refid="run.Runner (1).bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+</project>
