@@ -30,15 +30,11 @@
         <fileset dir="${java.home}/lib" includes="*.jar"/>
         <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
     </path>
-    <path id="run.Runner (1).bootclasspath">
-        <path refid="Scala Library container [ 2.10.5 ].libraryclasspath"/>
-        <fileset dir="${java.home}/lib" includes="*.jar"/>
-        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
-    </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -76,14 +72,6 @@
             <classpath refid="mtmapper.classpath"/>
             <bootclasspath>
                 <path refid="run.MTMapper.bootclasspath"/>
-            </bootclasspath>
-        </java>
-    </target>
-    <target name="Runner (1)">
-        <java classname="main.java.Runner" failonerror="true" fork="yes">
-            <classpath refid="mtmapper.classpath"/>
-            <bootclasspath>
-                <path refid="run.Runner (1).bootclasspath"/>
             </bootclasspath>
         </java>
     </target>
