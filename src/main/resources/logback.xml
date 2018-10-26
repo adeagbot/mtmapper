@@ -69,7 +69,7 @@ Author Terry Adeagbo
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
-    <logger name="gmg.main.scala" level="DEBUG"/>
+    <logger name="main.scala" level="DEBUG"/>
     <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="INFOFILE" />
